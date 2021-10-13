@@ -1,21 +1,20 @@
 <template>
   <div>
     <Navbar />
-    <div class="container w-75 bg-primary mt-5 rounded shadow">
+    <div class="container w-75 bg-primary mt-3 mb-5 rounded shadow">
       <div class="row align-items-stretch">
-        <div
-          class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded"
-        ></div>
-        <div class="col bg-white p-5 rounded-end">
+        <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded"></div>
+        <div class="col bg-white p-4 rounded-end" style="padding-right: 45px !important; padding-left: 45px !important;">
           <div class="text-center">
             <img
               src="@/assets/logo.png"
               class="text-center"
-              width="120"
+              width="100"
               alt="UTEZ"
             />
           </div>
-          <h5 class="fw-bold text-center py-3">Bienvenida</h5>
+          <h3 class="fw-bold text-center">BT-Mujeres</h3>
+          <p class="text-center">¡Bienvenida! Inicia sesión para continuar...</p>
           <form action="#">
             <div class="mb-4">
               <label for="email" class="form-label"
@@ -24,7 +23,7 @@
               <input
                 type="email"
                 class="form-control"
-                name="email"
+                id="email"
                 placeholder="Ingresa tu correo institucional"
               />
             </div>
@@ -35,26 +34,38 @@
               <input
                 type="password"
                 class="form-control"
-                name="password"
+                id="password"
                 placeholder="Ingresa tu contraseña"
               />
             </div>
             <div class="d-grid">
-              <router-link class="btn btn-primary" to="departamentos-administrador">
+              <router-link class="btn btn-primary" to="/">
                 <i class="fas fa-sign-in-alt mr"></i>
                 Iniciar sesión
               </router-link>
             </div>
-            <div class="my-3 text-center">
-              <span><router-link to="recuperar">Recuperar contraseña</router-link></span>
+            <div class="mt-3 text-center">
+              <span>¿No tienes una cuenta? <router-link to="/register">Registrate</router-link></span><br>
+              <span><router-link to="/recuperar">Recuperar contraseña</router-link></span>
             </div>
           </form>
         </div>
       </div>
+      <Footer />
     </div>
+    
   </div>
 </template>
+
 <script>
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+export default {
+  name: "Index",
+  components: {
+    Navbar, Footer
+  },
+}
 </script>
 
 <style scoped >

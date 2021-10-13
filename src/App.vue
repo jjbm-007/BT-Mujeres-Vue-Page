@@ -17,4 +17,9 @@ export default {
 .btn.btn-outline-info:hover {
   color: #ffffff !important;
 }
+
+.btn.btn-primary {
+  color: #FFFFFF !important;
+}
+
 </style>
