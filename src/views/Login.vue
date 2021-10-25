@@ -25,6 +25,7 @@
                 class="form-control"
                 id="email"
                 placeholder="Ingresa tu correo institucional"
+                v-model="email"
               />
             </div>
             <div class="mb-4">
@@ -36,13 +37,14 @@
                 class="form-control"
                 id="password"
                 placeholder="Ingresa tu contraseña"
+                v-model="password"
               />
             </div>
             <div class="d-grid">
-              <router-link class="btn btn-primary" to="/">
+              <button class="btn btn-primary" @click="login()">
                 <i class="fas fa-sign-in-alt mr"></i>
                 Iniciar sesión
-              </router-link>
+              </button>
             </div>
             <div class="mt-3 text-center">
               <span>¿No tienes una cuenta? <router-link to="/register">Registrate</router-link></span><br>
@@ -50,10 +52,12 @@
             </div>
           </form>
         </div>
+        <div class="alert alert-warning alert-float" role="alert" v-if="alert">
+          <i class="fas fa-exclamation-triangle mr"></i>Usuario/Contraseña incorrectos
+        </div>
       </div>
       <Footer />
     </div>
-    
   </div>
 </template>
 
@@ -62,9 +66,46 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 export default {
   name: "Index",
+  title: "Iniciar Sesión",
   components: {
     Navbar, Footer
   },
+  data: () => ({
+    usuarios:[],
+    alert:false,
+    email:"",
+    password:""
+  }),
+  methods:{
+    login(){
+      this.usuarios.some(element => {
+        if(this.email == element.email){
+          alert("LOGGEADO");
+          //this.alert = true;
+          //throw BreakException;
+          this.$router.push({name:'dashboard'});
+
+        }
+      });
+      this.alert = true;
+      // this.$router.push("/");
+    },
+     hide_alert() {
+      window.setInterval(() => {
+        this.alert = false;
+      }, 3000)    
+    }
+  },
+  mounted(){
+    let usuarios = localStorage.getItem("usuarios");
+    if (usuarios != null) {
+      this.usuarios = JSON.parse(usuarios);
+    }
+
+    if(alert){
+      this.hide_alert();
+    }
+  }
 }
 </script>
 
@@ -78,4 +119,5 @@ body {
   background-image: url("https://static.vecteezy.com/system/resources/previews/002/061/047/non_2x/business-working-woman-and-laptop-on-table-vector.jpg");
   background-position: center center;
 }
+
 </style>

@@ -1,11 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <img
-        src="@/assets/logo.png"
-        width="40"
-        alt="UTEZ"
-      />
+      <img src="@/assets/logo.png" width="40" alt="UTEZ" />
       <router-link to="/" class="navbar-brand" href="#">BT-Mujeres</router-link>
       <button
         class="navbar-toggler"
@@ -20,7 +16,19 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          
+
+          <!-- Perfil Reclutas | Empresa -->
+          <li class="nav-item" v-if="companies | recruit">
+            <router-link
+              :to="directionProfile"
+              class="nav-link"
+              style="border: none !important"
+              ><i class="fas fa-user-circle mr"></i>Mi Perfil</router-link
+            >
+          </li>
+
+          <!-- ############### Sección Administrador ###############-->     
+          <!-- Opciones de Administrador -->     
           <li class="nav-item dropdown" v-if="sesion & admin">
             <a
               class="nav-link dropdown-toggle"
@@ -34,48 +42,36 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <router-link to="jefes-academicos-administrador" class="dropdown-item"
-                  ><i class="fas fa-user-tie mr"></i>Jefes académicos</router-link 
-                >
-              </li>
-              <li>
-                <router-link to="personal-academico-administrador" class="dropdown-item"
-                  ><i class="fas fa-chalkboard-teacher mr"></i>Personal académico</router-link
+                <router-link to="/catalog-admin" class="dropdown-item">
+                  <i class="fas fa-book mr"></i>Categoría</router-link
                 >
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li>
-                <router-link
-                  to="asignatura-administrador"
-                  class="dropdown-item"
-                  ><i class="fas fa-book mr"></i>Asignaturas</router-link
+                <router-link to="/companies-admin" class="dropdown-item">
+                  <i class="fas fa-user-tie mr"></i>Empresas</router-link
                 >
               </li>
               <li>
-                <router-link
-                  to="carreras-administrador"
-                  class="dropdown-item"
-                  ><i class="fas fa-university mr"></i>Carreras</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="departamentos-administrador"
-                  class="dropdown-item"
-                  ><i class="fas fa-building mr"></i>Departamentos</router-link
-                >
-              </li>
-              <li>
-                <router-link
-                  to="periodo-administrador"
-                  class="dropdown-item"
-                  ><i class="fas fa-external-link-square-alt mr"></i>Periodo</router-link
+                <router-link to="/recruit-admin" class="dropdown-item">
+                  <i class="fas fa-user mr"></i>Reclutas</router-link
                 >
               </li>
             </ul>
           </li>
 
-          <li class="nav-item dropdown" v-if="sesion & usuarios">
+          <!-- ############### Sección Reclutas ###############-->
+          <!-- Datos Personales-->
+          <li class="nav-item" v-if="recruit">
+            <router-link
+              to="/personal-details-recruit"
+              class="nav-link"
+              style="border: none !important"
+              ><i class="fas fa-id-card mr"></i>Datos Personales</router-link
+            >
+          </li>
+          <!-- Catálogos -->
+          <li class="nav-item dropdown" v-if="sesion & recruit">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -89,34 +85,50 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
                 <router-link to="/catalogo" class="dropdown-item"
-                  ><i class="fas fa-angle-right mr"></i>Desarrollo</router-link 
+                  ><i class="fas fa-angle-right mr"></i>Desarrollo</router-link
                 >
               </li>
               <li>
                 <router-link to="/catalogo" class="dropdown-item"
-                  ><i class="fas fa-angle-right mr"></i>Negocios</router-link 
+                  ><i class="fas fa-angle-right mr"></i>Negocios</router-link
                 >
               </li>
               <li>
                 <router-link to="/catalogo" class="dropdown-item"
-                  ><i class="fas fa-angle-right mr"></i>Finanzas</router-link 
+                  ><i class="fas fa-angle-right mr"></i>Finanzas</router-link
                 >
               </li>
             </ul>
           </li>
         </ul>
+        <!-- Botones de sesión -->
         <div class="navbar-text">
-          <router-link v-if="sesion" to="/login" type="button" class="btn btn-outline-secondary">
+          <router-link
+            v-if="sesion"
+            to="/login"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
             <i class="fas fa-sign-out-alt"></i>
             Cerrar sesión
           </router-link>
 
-          <router-link v-if="!sesion" to="/login" type="button" class="btn btn-primary mr">
+          <router-link
+            v-if="!sesion"
+            to="/login"
+            type="button"
+            class="btn btn-primary mr"
+          >
             <i class="fas fa-sign-out-alt"></i>
             Iniciar sesión
           </router-link>
 
-          <router-link v-if="!sesion" to="/register" type="button" class="btn btn-outline-secondary">
+          <router-link
+            v-if="!sesion"
+            to="/register"
+            type="button"
+            class="btn btn-outline-secondary"
+          >
             <i class="fas fa-sign-out-alt"></i>
             Registrate
           </router-link>
@@ -128,15 +140,23 @@
 
 <script>
 export default {
-  data(){
-    return{
-      sesion: false,
-      admin: false,
-      empresa: false,
-      usuarios: true,
-      buscar: ''
+  data() {
+    return {
+      sesion: true,
+      admin: true,
+      companies: false,
+      recruit: false,
+
+      directionProfile: "",
+    };
+  },
+  mounted() {
+    if (this.companies) {
+      this.directionProfile = "/profile-companies";
     }
-  }
-  
-}
+    if (this.recruit) {
+      this.directionProfile = "/profile-recruit";
+    }
+  },
+};
 </script>
