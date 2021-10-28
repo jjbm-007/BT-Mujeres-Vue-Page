@@ -1,10 +1,15 @@
 <template>
   <div>
-    <Navbar />
+    <Navbar/>
     <div class="container w-75 bg-primary mt-3 mb-5 rounded shadow">
       <div class="row align-items-stretch">
-        <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded"></div>
-        <div class="col bg-white p-4 rounded-end" style="padding-right: 45px !important; padding-left: 45px !important;">
+        <div
+          class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded"
+        ></div>
+        <div
+          class="col bg-white p-4 rounded-end"
+          style="padding-right: 45px !important; padding-left: 45px !important"
+        >
           <div class="text-center">
             <img
               src="@/assets/logo.png"
@@ -14,7 +19,9 @@
             />
           </div>
           <h3 class="fw-bold text-center">BT-Mujeres</h3>
-          <p class="text-center">¡Bienvenida! Inicia sesión para continuar...</p>
+          <p class="text-center">
+            ¡Bienvenida! Inicia sesión para continuar...
+          </p>
           <form action="#">
             <div class="mb-4">
               <label for="email" class="form-label"
@@ -47,66 +54,93 @@
               </button>
             </div>
             <div class="mt-3 text-center">
-              <span>¿No tienes una cuenta? <router-link to="/register">Registrate</router-link></span><br>
-              <span><router-link to="/recuperar">Recuperar contraseña</router-link></span>
+              <span
+                >¿No tienes una cuenta?
+                <router-link to="/register">Registrate</router-link></span
+              ><br />
+              <span
+                ><router-link to="/recuperar"
+                  >Recuperar contraseña</router-link
+                ></span
+              >
             </div>
           </form>
         </div>
         <div class="alert alert-warning alert-float" role="alert" v-if="alert">
-          <i class="fas fa-exclamation-triangle mr"></i>Usuario/Contraseña incorrectos
+          <i class="fas fa-exclamation-triangle mr"></i>Usuario/Contraseña
+          incorrectos
         </div>
       </div>
-      <Footer />
     </div>
+    <Footer/>
   </div>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
 export default {
   name: "Index",
   title: "Iniciar Sesión",
   components: {
-    Navbar, Footer
+    Navbar,
+    Footer,
   },
   data: () => ({
-    usuarios:[],
-    alert:false,
-    email:"",
-    password:""
+    usuarios: [],
+    alert: false,
+    email: "",
+    password: "",
+    logger: false
   }),
-  methods:{
-    login(){
-      this.usuarios.some(element => {
-        if(this.email == element.email){
-          alert("LOGGEADO");
-          //this.alert = true;
-          //throw BreakException;
-          this.$router.push({name:'dashboard'});
+  methods: {
+    login() {
+      this.logger = false;
+      this.usuarios.forEach(element => {
+        if(element.email == this.email){
+          this.logger = true
 
+          if(element.typeUser == "admin"){
+            localStorage.setItem("logger", "admin");
+
+          }else if(element.typeUser == "recluta"){
+            localStorage.setItem("logger", "recluta");
+
+          }else if(element.typeUser == "usuario"){
+            localStorage.setItem("logger", "usuario");
+
+          }else{
+            this.logger = false;
+          }
+          
         }
       });
-      this.alert = true;
-      // this.$router.push("/");
+
+      if (this.logger) {
+        this.$router.push("/");
+      }else{
+        this.alert = true;
+      }
+      
     },
-     hide_alert() {
+    hide_alert() {
       window.setInterval(() => {
         this.alert = false;
-      }, 3000)    
-    }
+      }, 3000);
+    },
   },
-  mounted(){
+  mounted() {
     let usuarios = localStorage.getItem("usuarios");
     if (usuarios != null) {
       this.usuarios = JSON.parse(usuarios);
     }
 
-    if(alert){
+    if (alert) {
       this.hide_alert();
     }
-  }
-}
+  },
+};
 </script>
 
 <style scoped >
@@ -119,5 +153,4 @@ body {
   background-image: url("https://static.vecteezy.com/system/resources/previews/002/061/047/non_2x/business-working-woman-and-laptop-on-table-vector.jpg");
   background-position: center center;
 }
-
 </style>

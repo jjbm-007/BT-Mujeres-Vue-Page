@@ -45,7 +45,7 @@ export default {
     ];
 
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
-    localStorage.setItem("logger", JSON.stringify("default"));
+    localStorage.setItem("logger", "default");
   },
 };
 </script>

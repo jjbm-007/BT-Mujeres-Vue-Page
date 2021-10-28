@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <Navbar />
+    <Navbar/>
     <div class="container mt-3 p-4">
       <h1><i class="fas fa-pencil-alt mr"></i> Registro</h1>
       <div class="row align-items-stretch mt-4">
@@ -111,6 +111,7 @@
         </div>
       </div>
     </div>
+    <Footer/>
   </div>
 </template>
 

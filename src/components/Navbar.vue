@@ -16,8 +16,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarText">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
           <!-- Perfil Reclutas | Empresa -->
+
           <li class="nav-item" v-if="companies | recruit">
             <router-link
               :to="directionProfile"
@@ -27,8 +27,8 @@
             >
           </li>
 
-          <!-- ############### Sección Administrador ###############-->     
-          <!-- Opciones de Administrador -->     
+          <!-- ############### Sección Administrador ###############-->
+          <!-- Opciones de Administrador -->
           <li class="nav-item dropdown" v-if="sesion & admin">
             <a
               class="nav-link dropdown-toggle"
@@ -103,15 +103,15 @@
         </ul>
         <!-- Botones de sesión -->
         <div class="navbar-text">
-          <router-link
+          <button
             v-if="sesion"
-            to="/login"
             type="button"
             class="btn btn-outline-secondary"
+            @click="logout()"
           >
             <i class="fas fa-sign-out-alt"></i>
             Cerrar sesión
-          </router-link>
+          </button>
 
           <router-link
             v-if="!sesion"
@@ -142,13 +142,54 @@
 export default {
   data() {
     return {
-      sesion: true,
-      admin: true,
+      sesion: false,
+      admin: false,
       companies: false,
       recruit: false,
 
       directionProfile: "",
     };
+  },
+  methods:{
+    getSessions(){
+      let logger = localStorage.getItem("logger");
+      if(logger == "default"){
+        this.sesion = false;
+        this.admin = false;
+        this.companies = false;
+        this.recruit = false;
+      }else if(logger == "admin"){
+        this.sesion = true;
+        this.admin = true;
+        this.companies = false;
+        this.recruit = false;
+      }else if(logger == "recluta"){
+        this.sesion = true;
+        this.admin = false;
+        this.companies = true;
+        this.recruit = false;
+        this.directionProfile = "/profile-companies";
+      }else if(logger == "usuario"){
+        this.sesion = true;
+        this.admin = false;
+        this.companies = false;
+        this.recruit = true;
+        this.directionProfile = "/profile-recruit";
+      }else{
+        this.sesion = false;
+        this.admin = false;
+        this.companies = false;
+        this.recruit = false;
+      }
+    },
+    logout(){
+      this.sesion = false;
+      this.admin = false;
+      this.companies = false;
+      this.recruit = false;
+      localStorage.setItem("logger", "default");
+      this.$router.push("/login");
+    }
   },
   mounted() {
     if (this.companies) {
@@ -157,6 +198,7 @@ export default {
     if (this.recruit) {
       this.directionProfile = "/profile-recruit";
     }
+    this.getSessions();
   },
 };
 </script>
