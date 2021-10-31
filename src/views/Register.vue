@@ -54,13 +54,13 @@
           />
         </div>
         <div class="col-6 mb-4">
-          <label for="password1" class="form-label">
+          <label for="password2" class="form-label">
             <i class="fas fa-key mrl"></i>Repita contraseña
           </label>
           <input
             type="password"
             class="form-control"
-            id="password1"
+            id="password2"
             placeholder="Repita su contraseña"
             v-model="passwordRepit"
           />
@@ -96,8 +96,8 @@
           </label>
           <select id="typeUser" class="form-select" v-model="typeUser">
             <option selected disabled>Seleccione...</option>
-            <option value="1">Empresa</option>
-            <option value="2">Recluta</option>
+            <option value="recluta">Empresa</option>
+            <option value="usuario">Recluta</option>
           </select>
         </div>
 
@@ -130,24 +130,35 @@ export default {
     passwordRepit:"",
     phone:"",
     email:"",
-    typeUser:""
+    typeUser:"",
+    usuarios:[]
   }),
   methods:{
     register(){
-      if (this.password == this.passwordRepit) {
-        let user = {
-          userName: this.userName,
-          firstName: this.firstName,
-          secondName: this.secondName,
-          password: this.password,
-          phone: this.phone,
-          email: this.email,
-          typeUser: this.typeUser
+      //if (this.userName != "" && this.firstName != "" && this.secondName != "" && this.password != "" != this.passwordRepit && this.phone != "" && this.email != "" && this.typeUser == "") {
+        if (this.password == this.passwordRepit) {
+          let user = {
+            userName: this.userName,
+            firstName: this.firstName,
+            secondName: this.secondName,
+            password: this.password,
+            phone: this.phone,
+            email: this.email,
+            typeUser: this.typeUser
+          }
+          
+          let datos = localStorage.getItem("usuarios");
+          if (datos != null) {
+            this.usuarios = JSON.parse(datos);
+            this.usuarios.push(user)
+            localStorage.setItem("usuarios", JSON.stringify(this.usuarios));
+            console.log(this.usuarios);
+            this.$router.push("/login");
+          }
+          
         }
-        
-        localStorage.setItem("user", JSON.stringify(data));
-        this.$router.push("/user-plan-admin");
-      }
+      //}
+      
     }
   }
 };

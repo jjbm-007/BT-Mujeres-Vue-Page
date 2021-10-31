@@ -2,9 +2,7 @@
   <div class="index">
     <div class="container mt-3">
       <div class="row mb-4 mt-4">
-        <div class="col-8">
-          <h4>Revisa nuestros trabajos que tenemos para ti</h4>
-        </div>
+        
         <div class="col-3">
           <div class="d-flex">
             <input
@@ -19,6 +17,13 @@
           <label class="form-label" style="font-size: 18pt"
             ><i class="fas fa-search"></i
           ></label>
+        </div>
+        <div class="col-8">
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <router-link to="/new-vacant-companies" class="btn btn-primary" type="button">
+                    <i class="fas fa-pencil-alt mr"></i>Registrar Vacante
+                </router-link>
+            </div>
         </div>
       </div>
 
@@ -127,9 +132,13 @@
               <i class="fas fa-times mr"></i>
               Cerrar
             </button>
-            <button type="button" class="btn btn-primary">
-              <i class="fas fa-check-square"></i>
-              Solicitar ahora
+            <router-link to="/new-vacant-companies" class="btn btn-warning mr">
+             <i class="fas fa-edit"></i>
+              Editar Vacante
+            </router-link>
+            <button type="button" class="btn btn-danger">
+              <i class="fas fa-window-close"></i>
+              Cerrar Vacante
             </button>
           </div>
         </div>

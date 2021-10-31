@@ -114,6 +114,7 @@ export default {
             this.logger = false;
           }
           
+          localStorage.setItem("usuarioLoggeado", JSON.stringify(element));
         }
       });
 
@@ -133,6 +134,7 @@ export default {
   mounted() {
     let usuarios = localStorage.getItem("usuarios");
     if (usuarios != null) {
+      
       this.usuarios = JSON.parse(usuarios);
     }
 

@@ -2,9 +2,7 @@
   <div class="index">
     <div class="container mt-3">
       <div class="row mb-4 mt-4">
-        <div class="col-8">
-          <h4>Revisa nuestros trabajos que tenemos para ti</h4>
-        </div>
+        
         <div class="col-3">
           <div class="d-flex">
             <input
@@ -19,6 +17,9 @@
           <label class="form-label" style="font-size: 18pt"
             ><i class="fas fa-search"></i
           ></label>
+        </div>
+        <div class="col-8">
+          
         </div>
       </div>
 
@@ -127,9 +128,9 @@
               <i class="fas fa-times mr"></i>
               Cerrar
             </button>
-            <button type="button" class="btn btn-primary">
-              <i class="fas fa-check-square"></i>
-              Solicitar ahora
+            <button type="button" class="btn btn-danger">
+              <i class="fas fa-window-close"></i>
+              Cancelar Vacante
             </button>
           </div>
         </div>

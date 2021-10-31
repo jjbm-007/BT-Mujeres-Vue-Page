@@ -38,6 +38,18 @@ const routes = [
         component: () => import('@/views/Companies/Profile')
       },
       {
+        path: '/company-details-companies',
+        component: () => import('@/views/Companies/CompanyDetails')
+      },
+      {
+        path: '/vacant-companies',
+        component: () => import('@/views/Companies/Vacant')
+      },
+      {
+        path: '/new-vacant-companies',
+        component: () => import('@/views/Companies/NewVacant')
+      },
+      {
         path: '/profile-recruit',
         component: () => import('@/views/Recruit/Profile')
       },
@@ -45,7 +57,10 @@ const routes = [
         path: '/personal-details-recruit',
         component: () => import('@/views/Recruit/PersonalDetails')
       },
-      
+      {
+        path: '/vacant-recruit',
+        component: () => import('@/views/Recruit/Vacant')
+      }
     ]
   },
   

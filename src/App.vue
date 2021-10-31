@@ -62,6 +62,10 @@ export default {
   color: #ffffff !important;
 }
 
+.btn.btn-secondary {
+  color: #ffffff !important;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none !important;
@@ -76,5 +80,20 @@ input[type="number"]::-webkit-outer-spin-button {
 	background-color:#0C9;
 	color:#FFF;
 	text-align:center;
+}
+
+.bg-light{
+  background-color: #F74780 !important;
+  color: #FFFFFF !important;
+}
+
+.navbar-brand{
+  color: #FFFFFF !important;
+}
+
+.btn.btn-primary{
+  background-color: #FC6998;
+  color: #ffffff !important;
+  border-color: #FC6998;
 }
 </style>

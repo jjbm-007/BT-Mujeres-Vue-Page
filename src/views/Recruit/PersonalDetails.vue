@@ -168,6 +168,11 @@
             <input type="number" class="form-control" />
           </div>
         </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3 mb-6">
+          <button class="btn btn-primary">
+            <i class="fas fa-save mr"></i>Guardar
+          </button>
+        </div>
       </div>
       <div
         class="tab-pane fade"
@@ -191,6 +196,11 @@
             >
             <input type="file" class="form-control" />
           </div>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3 mb-6">
+          <button class="btn btn-primary">
+            <i class="fas fa-save mr"></i>Guardar
+          </button>
         </div>
       </div>
       <div
@@ -229,6 +239,11 @@
             >
             <input type="text" class="form-control" />
           </div>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3 mb-6">
+          <button class="btn btn-primary">
+            <i class="fas fa-save mr"></i>Guardar
+          </button>
         </div>
       </div>
       <div
@@ -326,6 +341,11 @@
             </div>
           </div>
         </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3 mb-6">
+          <button class="btn btn-primary">
+            <i class="fas fa-save mr"></i>Guardar
+          </button>
+        </div>
       </div>
       <div
         class="tab-pane fade"
@@ -334,8 +354,14 @@
         aria-labelledby="experiencia-tab"
       >
         <div class="row align-items-stretch mt-4">
-          <div class="col-12 mb-3">
+          <div class="col-6 mb-3">
             <h5>Experiencia Laboral</h5>
+          </div>
+
+          <div class="col-6">
+            <button class="btn btn-primary float-end" @click="registerJob()">
+              <i class="fas fa-pencil mr"></i>Registrar
+            </button>
           </div>
           <div class="col-12">
             <table class="table table-hover text-center mt-4">
@@ -389,6 +415,243 @@
         </div>
       </div>
     </div>
+    <!-- Modal Registro -->
+    <div
+      class="modal fade"
+      id="modalRegistrar"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fas fa-pencil-alt mr"></i>Registrar Experiencia Laboral
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body row">
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-briefcase mr"></i>Empleo
+              </label>
+              <input type="text" class="form-control"/>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-building mr"></i>Empresa
+              </label>
+              <input type="text" class="form-control"/>
+            </div>
+            <div class="mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-map-marked-alt mr"></i>Ciudad
+              </label>
+              <select class="form-select" v-model="estadoSeleccionadoExperiencia">
+                <option v-for="(item, index) of estadosRepublica" :key="item">
+                  {{ index }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-calendar-day mr"></i>Mes Inicio
+              </label>
+              <select class="form-select">
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+                <option value="Julio">Julio</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Septiembre">Septiembre</option>
+                <option value="Octubre">Octubre</option>
+                <option value="Noviembre">Noviembre</option>
+                <option value="Diciembre">Diciembre</option>
+              </select>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-calendar-day mr"></i>Mes Final
+              </label>
+              <select class="form-select">
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+                <option value="Julio">Julio</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Septiembre">Septiembre</option>
+                <option value="Octubre">Octubre</option>
+                <option value="Noviembre">Noviembre</option>
+                <option value="Diciembre">Diciembre</option>
+              </select>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-calendar-day mr"></i>Año Inicio
+              </label>
+              <input type="number" class="form-control"/>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-calendar-day mr"></i>Año Final
+              </label>
+              <input type="number" class="form-control"/>
+            </div>
+            <div class="mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-grip-lines mr"></i>Descripción
+              </label>
+              <textarea rows="2" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              <i class="fas fa-times mr"></i>
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-pencil-alt mr"></i>Registrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Modificar -->
+    <div
+      class="modal fade"
+      id="modalModificar"
+      tabindex="-1"
+      data-bs-backdrop="static"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <i class="fas fa-pencil-alt mr"></i>Modificar Experiencia Laboral
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body row">
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-briefcase mr"></i>Empleo
+              </label>
+              <input type="text" class="form-control"/>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-building mr"></i>Empresa
+              </label>
+              <input type="text" class="form-control"/>
+            </div>
+            <div class="mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-map-marked-alt mr"></i>Ciudad
+              </label>
+              <select class="form-select" v-model="estadoSeleccionadoExperiencia">
+                <option v-for="(item, index) of estadosRepublica" :key="item">
+                  {{ index }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-calendar-day mr"></i>Mes Inicio
+              </label>
+              <select class="form-select">
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+                <option value="Julio">Julio</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Septiembre">Septiembre</option>
+                <option value="Octubre">Octubre</option>
+                <option value="Noviembre">Noviembre</option>
+                <option value="Diciembre">Diciembre</option>
+              </select>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-calendar-day mr"></i>Mes Final
+              </label>
+              <select class="form-select">
+                <option value="Enero">Enero</option>
+                <option value="Febrero">Febrero</option>
+                <option value="Marzo">Marzo</option>
+                <option value="Abril">Abril</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Junio">Junio</option>
+                <option value="Julio">Julio</option>
+                <option value="Agosto">Agosto</option>
+                <option value="Septiembre">Septiembre</option>
+                <option value="Octubre">Octubre</option>
+                <option value="Noviembre">Noviembre</option>
+                <option value="Diciembre">Diciembre</option>
+              </select>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-calendar-day mr"></i>Año Inicio
+              </label>
+              <input type="number" class="form-control"/>
+            </div>
+            <div class="col-6 mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-calendar-day mr"></i>Año Final
+              </label>
+              <input type="number" class="form-control"/>
+            </div>
+            <div class="mb-2">
+              <label for="careerName" class="form-label">
+                <i class="fas fa-grip-lines mr"></i>Descripción
+              </label>
+              <textarea rows="2" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              <i class="fas fa-times mr"></i>
+              Cancelar
+            </button>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-pencil-alt mr"></i>Modificar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -403,9 +666,18 @@ export default {
       estadoSeleccionado: "",
       municipioSeleccionado: "",
       selectOption: "Seleccione...",
+      estadoSeleccionadoExperiencia:""
     };
   },
-  methods: {},
+  methods: {
+    registerJob(){
+      $('#modalRegistrar').modal('show');
+    
+    },
+    modificar(){
+      $('#modalModificar').modal('show');
+    }
+  },
   computed: {
     municipios() {
       return this.estadosRepublica[this.estadoSeleccionado];
