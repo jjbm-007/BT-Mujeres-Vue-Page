@@ -1,9 +1,9 @@
 <template>
-  <div class="profile mt-5">
+  <div class="profile mt-5 card shadow p-4">
     <h3 class="text-center"><i class="fas fa-building mr"></i>Datos de la Empresa</h3>
     <div class="row align-items-stretch mt-4">
       <div class="row align-items-stretch mt-4">
-        <div class="col-12 mb-3">
+        <div class="col-6 mb-3">
           <label for="companyName" class="form-label">
            <i class="fas fa-building mrl"></i>Nombre de la Empresa
           </label>
@@ -12,10 +12,9 @@
             class="form-control"
             id="companyName"
             placeholder="Ingresa tu nombre"
-            v-model="usuario.userName"
           />
         </div>
-        <div class="col-4 mb-3">
+        <div class="col-6 mb-3">
           <label for="direction" class="form-label">
             <i class="fas fa-map-marker-alt mrl"></i>Dirección
           </label>
@@ -24,10 +23,9 @@
             class="form-control"
             id="direction"
             placeholder="Ingresa tu primer apellido"
-            v-model="usuario.firstName"
           />
         </div>
-        <div class="col-4 mb-3">
+        <div class="col-6 mb-3">
           <label for="companyLine" class="form-label">
             <i class="fas fa-box mrl"></i>Giro de la Empresa
           </label>
@@ -36,11 +34,10 @@
             class="form-control"
             id="companyLine"
             placeholder="Ingresa tu segundo apellido"
-            v-model="usuario.secondName"
           />
         </div>
 
-        <div class="col-4 mb-3">
+        <div class="col-6 mb-3">
           <label for="noWorkers" class="form-label">
             <i class="fas fa-hashtag mrl"></i>Número de Empleados
           </label>
@@ -49,7 +46,6 @@
             class="form-control"
             id="noWorkers"
             placeholder="Ingresa tu correo electrónico"
-            v-model="usuario.email"
           />
         </div>
         <div class="col-12 mb-3">
@@ -61,11 +57,10 @@
             class="form-control"
             id="description"
             placeholder="Ingresa tu teléfono"
-            v-model="usuario.phone"
           ></textarea>
         </div>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3 mb-5">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
           <router-link to="/" class="btn btn-secondary mr">
             <i class="fas fa-times mr"></i>Cancelar
           </router-link>

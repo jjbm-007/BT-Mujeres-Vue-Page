@@ -1,7 +1,8 @@
 <template>
   <div class="index">
     <div class="container mt-3">
-      <div class="row mb-4 mt-4">
+      <!-- Títulos -->
+      <div class="row mb-3 mt-4">
         <div class="col-8">
           <h4>Revisa nuestros trabajos que tenemos para ti</h4>
         </div>
@@ -21,13 +22,11 @@
           ></label>
         </div>
       </div>
-
-      <div class="row row-cols-1 row-cols-md-3 g-4 mb-5 text-center">
+      <!-- Cards -->
+      <div class="row row-cols-1 row-cols-md-3 g-4 mb-6 text-center" style="margin-bottom: 100px;">
         <div class="col" v-for="item in items" v-bind:key="item.id">
           <div class="card h-100">
-            <div class="card-header">
-              {{ item.catalogo }}
-            </div>
+            <img :src="item.img" class="card-img-top" alt="..." />
             <div class="card-body">
               <h5 class="card-title">{{ item.nombreEmpleo }}</h5>
               <p class="card-text">
@@ -45,7 +44,6 @@
         </div>
       </div>
     </div>
-
     <!-- Modal -->
     <div
       class="modal fade"
@@ -54,8 +52,113 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <!-- Carrusel -->
+          <div
+            id="carouselExampleControls"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  :src="vacante.img"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="https://www.larepublica.ec/wp-content/uploads/2015/12/mujeres-trabajando.jpg"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="https://semanariovoz.com/wp-content/uploads/2015/05/21/Mujeres-trabajando-pag-62.jpg  "
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <!-- Body card -->
+          <div class="modal-body" style="padding: 15px 30px 15px 30px;">
+            <div class="mb-3">
+              <h3 class="modal-title" id="exampleModalLabel">
+                <b>{{ vacante.nombreEmpleo }} </b>- {{ vacante.catalogo }}
+              </h3>
+              <span> <b>{{ vacante.salario }} ( {{ vacante.periodoPago }} )</b> - {{ vacante.remoto ? "Home Office" : "Presencial" }}</span> <br />
+              <span>Ubicado en {{ vacante.municipio }}</span> -
+              <span>{{ vacante.estadoRepublica }}</span><br/>
+              <span>{{ vacante.empresa }} </span> - <span>{{ vacante.fechaInicio }}</span><br/>
+              <span>{{ vacante.tipoEmpleo }} - Se de los primeros {{ vacante.noContrataciones }} solicitantes</span>
+            </div>
+            <span><b>Descripción</b></span>
+            <p>{{ vacante.descripcion }}</p>
+            <span><strong>Beneficios </strong></span><br />
+                <span>{{ vacante.beneficios }}</span>
+
+            <!-- <div class="mt-3" >
+              <span style="font-size:10pt;"
+                ><strong>Publicado por {{ vacante.propietario }}</strong></span
+              >
+            </div> -->
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              <i class="fas fa-times mr"></i>
+              Cerrar
+            </button>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-check-square"></i>
+              Solicitar ahora
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div
+      class="modal fade"
+      id="abrirVacante"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
+          
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">
               {{ vacante.nombreEmpleo }} - {{ vacante.catalogo }}
@@ -134,7 +237,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -163,11 +266,13 @@ export default {
           noContrataciones: 5,
           tipoEmpleo: "Planta",
           fechaInicio: "13/Octubre/2021",
-          salario: "$ 5,000",
+          salario: "$ 5,000 - $6,000",
           periodoPago: "Mensual",
           beneficios: "Seguro social",
           empresa: "Empresa 1",
           propietario: "Ing. Reynel Flores Brito",
+          img:
+            "https://www.consumotic.mx/wp-content/uploads/2021/04/0405_mujeres-trabajando.jpg",
         },
         {
           id: 2,
@@ -181,11 +286,13 @@ export default {
           noContrataciones: 5,
           tipoEmpleo: "Planta",
           fechaInicio: "13/Octubre/2021",
-          salario: "$ 5,000",
+          salario: "$ 5,000 - $6,000",
           periodoPago: "Mensual",
           beneficios: "Seguro social",
           empresa: "Empresa 2",
           propietario: "Lic. Noemi Catalán Nava",
+          img:
+            "https://i0.wp.com/magis.iteso.mx/wp-content/uploads/2014/10/Magis-442-equidad-salario-mujeres-2.jpg?resize=620%2C354",
         },
         {
           id: 3,
@@ -199,11 +306,53 @@ export default {
           noContrataciones: 5,
           tipoEmpleo: "Planta",
           fechaInicio: "13/Octubre/2021",
-          salario: "$ 5,000",
+          salario: "$ 5,000 - $6,000",
           periodoPago: "Mensual",
           beneficios: "Seguro social",
           empresa: "Empresa 3",
           propietario: "Dr. José Narvaez Figueroa",
+          img:
+            "https://s03.s3c.es/imag/_v0/770x420/8/8/9/490x_mujeres-trabajando-dreams.jpg",
+        },
+        {
+          id: 4,
+          nombreEmpleo: "Empleo 4",
+          descripcion:
+            "Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.",
+          catalogo: "Negocios",
+          estadoRepublica: "CDMX",
+          municipio: "Insurgentes",
+          remoto: false,
+          noContrataciones: 5,
+          tipoEmpleo: "Planta",
+          fechaInicio: "13/Octubre/2021",
+          salario: "$ 5,000 - $6,000",
+          periodoPago: "Mensual",
+          beneficios: "Seguro social",
+          empresa: "Empresa 3",
+          propietario: "Dr. José Narvaez Figueroa",
+          img:
+            "https://blogs.iadb.org/trabajo/wp-content/uploads/sites/25/2021/05/mujeres.png",
+        },
+        {
+          id: 5,
+          nombreEmpleo: "Empleo 5",
+          descripcion:
+            "Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.",
+          catalogo: "Negocios",
+          estadoRepublica: "CDMX",
+          municipio: "Insurgentes",
+          remoto: false,
+          noContrataciones: 5,
+          tipoEmpleo: "Planta",
+          fechaInicio: "13/Octubre/2021",
+          salario: "$ 5,000 - $6,000",
+          periodoPago: "Mensual",
+          beneficios: "Seguro social",
+          empresa: "Empresa 3",
+          propietario: "Dr. José Narvaez Figueroa",
+          img:
+            "https://lh3.googleusercontent.com/proxy/l50ExlUWwELSpD8H3h6VhwYREZwXtTObOoXNwxUktvTm6L5TMP4dZvbVBNealiTTzF6UZIBB1kU5ddhYKzXST_xxrz7v7eK7cxPE4gqUSX1dpP9I5sDIWDGoVqzA18KQaGw8EA",
         },
       ],
       buscar: "",
@@ -242,5 +391,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

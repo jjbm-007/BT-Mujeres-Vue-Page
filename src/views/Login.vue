@@ -12,15 +12,15 @@
         >
           <div class="text-center">
             <img
-              src="@/assets/logo.png"
+              src="@/assets/BT-Mujeres-Logo-2.jpeg"
               class="text-center"
-              width="100"
+              width="110"
               alt="UTEZ"
             />
           </div>
-          <h3 class="fw-bold text-center">BT-Mujeres</h3>
-          <p class="text-center">
-            ¡Bienvenida! Inicia sesión para continuar...
+          <!-- <h3 class="fw-bold text-center">BT-Mujeres</h3> -->
+          <p class="text-center mt-3">
+            <b>¡Bienvenida!</b> Inicia sesión para continuar...
           </p>
           <form action="#">
             <div class="mb-4">
@@ -58,16 +58,12 @@
                 >¿No tienes una cuenta?
                 <router-link to="/register">Registrate</router-link></span
               ><br />
-              <span
-                ><router-link to="/recuperar"
-                  >Recuperar contraseña</router-link
-                ></span
-              >
+             
             </div>
           </form>
         </div>
         <div class="alert alert-warning alert-float" role="alert" v-if="alert">
-          <i class="fas fa-exclamation-triangle mr"></i>Usuario/Contraseña
+          <i class="fas fa-exclamation-triangle mr"></i>Usuario o contraseña
           incorrectos
         </div>
       </div>
@@ -147,12 +143,16 @@ export default {
 
 <style scoped >
 body {
-  background: #ffe259;
+  background: #9f00b4;
   background: linear-gradient(to right, rgb(235, 235, 235), #b9b9b9);
 }
 
 .bg {
   background-image: url("https://static.vecteezy.com/system/resources/previews/002/061/047/non_2x/business-working-woman-and-laptop-on-table-vector.jpg");
   background-position: center center;
+}
+
+a{
+  color: #9f00b4;
 }
 </style>

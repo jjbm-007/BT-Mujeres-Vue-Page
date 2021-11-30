@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <Navbar/>
-    <div class="container mt-3 p-4">
+    <div class="container mt-4 p-4 card shadow">
       <h1><i class="fas fa-pencil-alt mr"></i> Registro</h1>
       <div class="row align-items-stretch mt-4">
         <div class="col-4 mb-4">
@@ -117,10 +117,11 @@
 
 <script>
 import Navbar from "@/components/Navbar.vue";
+import Footer from "@/components/Footer.vue";
 export default {
   name: "Register",
   components: {
-    Navbar,
+    Navbar,Footer
   },
   data:()=>({
     userName:"",

@@ -77,13 +77,13 @@ input[type="number"]::-webkit-outer-spin-button {
 	width:300px;
 	bottom:40px;
 	right:40px;
-	background-color:#0C9;
+	background-color:black;
 	color:#FFF;
 	text-align:center;
 }
 
 .bg-light{
-  background-color: #F74780 !important;
+  background-color: #D98880 !important;
   color: #FFFFFF !important;
 }
 
@@ -92,8 +92,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .btn.btn-primary{
-  background-color: #FC6998;
+  background-color: #D98880;
   color: #ffffff !important;
-  border-color: #FC6998;
+  border-color: #D98880;
 }
 </style>

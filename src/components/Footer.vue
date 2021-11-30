@@ -1,6 +1,6 @@
 <template>
     <div class="bg-light text-center p-3 footer">
-        Bolsa de Trabajo - Mujeres ©
+        Bolsa de Trabajo - Mujeres © {{new Date().getFullYear()}}
     </div>
 </template>
 

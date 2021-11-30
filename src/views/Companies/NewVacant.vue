@@ -1,5 +1,5 @@
 <template>
-  <div class="profile mt-5">
+  <div class="profile mt-4 card shadow p-4">
     <h3 class="text-center">
       <i class="fas fa-pencil-alt mr"></i>Nueva Vacante
     </h3>
@@ -85,7 +85,7 @@
             <i class="fas fa-calendar-day mrl"></i>Fecha Inicio
           </label>
           <input
-            type="text"
+            type="date"
             class="form-control"
             id="fechaInicio"
             placeholder="Ingrese la fecha de inicio"
@@ -126,7 +126,7 @@
           ></textarea>
         </div>
 
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3 mb-5">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-3">
           <router-link to="/vacant-companies" class="btn btn-secondary">
             <i class="fas fa-times mr"></i>Cancelar
           </router-link>

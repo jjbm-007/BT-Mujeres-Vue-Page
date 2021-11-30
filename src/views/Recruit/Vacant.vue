@@ -1,8 +1,11 @@
 <template>
   <div class="index">
     <div class="container mt-3">
-      <div class="row mb-4 mt-4">
-        
+      <!-- Títulos -->
+      <div class="row mb-3 mt-4">
+         <div class="col-8">
+          <h4><i class="fas fa-briefcase" style="margin-right: 20px;"></i>Mis vacantes</h4>
+         </div>
         <div class="col-3">
           <div class="d-flex">
             <input
@@ -18,17 +21,13 @@
             ><i class="fas fa-search"></i
           ></label>
         </div>
-        <div class="col-8">
-          
-        </div>
+       
       </div>
-
-      <div class="row row-cols-1 row-cols-md-3 g-4 mb-5 text-center">
+      <!-- Cards -->
+      <div class="row row-cols-1 row-cols-md-3 g-4 mb-6 text-center">
         <div class="col" v-for="item in items" v-bind:key="item.id">
           <div class="card h-100">
-            <div class="card-header">
-              {{ item.catalogo }}
-            </div>
+            <img :src="item.img" class="card-img-top" alt="..." />
             <div class="card-body">
               <h5 class="card-title">{{ item.nombreEmpleo }}</h5>
               <p class="card-text">
@@ -46,8 +45,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Modal -->
     <div
       class="modal fade"
       id="abrirVacante"
@@ -55,69 +52,84 @@
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              {{ vacante.nombreEmpleo }} - {{ vacante.catalogo }}
-            </h5>
+          <!-- Carrusel -->
+          <div
+            id="carouselExampleControls"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  src="https://s03.s3c.es/imag/_v0/770x420/8/8/9/490x_mujeres-trabajando-dreams.jpg"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="https://www.larepublica.ec/wp-content/uploads/2015/12/mujeres-trabajando.jpg"
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item">
+                <img
+                  src="https://semanariovoz.com/wp-content/uploads/2015/05/21/Mujeres-trabajando-pag-62.jpg  "
+                  class="d-block w-100"
+                  alt="..."
+                />
+              </div>
+            </div>
             <button
+              class="carousel-control-prev"
               type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
+          <!-- Body card -->
           <div class="modal-body" style="padding: 15px 30px 15px 30px;">
-            <div class="text-center mb-3">
-              <span class="badge bg-secondary mr"
-                >Empresa: <strong>{{ vacante.empresa }} </strong></span
-              >
-              <span class="badge bg-primary mr"
-                >Fecha de publicación: {{ vacante.fechaInicio }}</span
-              >
-              <span class="badge bg-info mr">
-                <span>Ubicado en {{ vacante.municipio }}</span> -
-                <span>{{ vacante.estadoRepublica }}</span>
-              </span>
+            <div class="mb-3">
+              <h3 class="modal-title" id="exampleModalLabel">
+                <b>{{ vacante.nombreEmpleo }} </b>- {{ vacante.catalogo }}
+              </h3>
+              <span> <b>{{ vacante.salario }} ( {{ vacante.periodoPago }} )</b> - {{ vacante.remoto ? "Home Office" : "Presencial" }}</span> <br />
+              <span>Ubicado en {{ vacante.municipio }}</span> -
+              <span>{{ vacante.estadoRepublica }}</span><br/>
+              <span>{{ vacante.empresa }} </span> - <span>{{ vacante.fechaInicio }}</span><br/>
+              <span>{{ vacante.tipoEmpleo }} - Se de los primeros {{ vacante.noContrataciones }} solicitantes</span>
             </div>
-
+            <span><b>Descripción</b></span>
             <p>{{ vacante.descripcion }}</p>
-
-            <div class="row" >
-              <div class="col-4 mb-3">
-                <span><strong>Tipo de empleo </strong></span><br/>
-                <span>{{ vacante.tipoEmpleo }}</span>
-              </div>
-              <div class="col-4 mb-3">
-                <span><strong>Salario </strong></span><br/>
-                <span>{{ vacante.salario }}</span>
-              </div>
-
-              <div class="col-4 mb-3">
-                <span><strong>Modalidad </strong></span><br/>
-                <span>{{ vacante.remoto ? "Remoto" : "Presencial" }}</span>
-              </div>
-
-              <div class="col-4 mb-3">
-                <span><strong>No de contrataciones </strong></span><br/>
-                <span>{{ vacante.noContrataciones }} personas</span>
-              </div>
-
-              <div class="col-4 mb-3">
-                <span><strong>Periodo de pago </strong></span><br/>
-                <span>{{ vacante.periodoPago }}</span>
-              </div>
-
-              <div class="col-4 mb-3">
-                <span><strong>Beneficios </strong></span><br/>
+            <span><strong>Beneficios </strong></span><br />
                 <span>{{ vacante.beneficios }}</span>
-              </div>
-            </div>
 
-            <div class="mt-3">
-              <span style="font-size:10pt;"><strong>Por {{vacante.propietario}}</strong></span>
-            </div>
+            <!-- <div class="mt-3" >
+              <span style="font-size:10pt;"
+                ><strong>Publicado por {{ vacante.propietario }}</strong></span
+              >
+            </div> -->
           </div>
           <div class="modal-footer">
             <button
@@ -128,9 +140,9 @@
               <i class="fas fa-times mr"></i>
               Cerrar
             </button>
-            <button type="button" class="btn btn-danger">
-              <i class="fas fa-window-close"></i>
-              Cancelar Vacante
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-check-square"></i>
+              Solicitar ahora
             </button>
           </div>
         </div>
@@ -154,7 +166,7 @@ export default {
       empleos: [
         {
           id: 1,
-          nombreEmpleo: "Empleo 1",
+          nombreEmpleo: "Empleo 3",
           descripcion:
             "Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.",
           catalogo: "Desarrollo",
@@ -169,10 +181,12 @@ export default {
           beneficios: "Seguro social",
           empresa: "Empresa 1",
           propietario: "Ing. Reynel Flores Brito",
+          img:
+            "https://www.consumotic.mx/wp-content/uploads/2021/04/0405_mujeres-trabajando.jpg",
         },
         {
           id: 2,
-          nombreEmpleo: "Empleo 2",
+          nombreEmpleo: "Empleo 5",
           descripcion:
             "Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.",
           catalogo: "Finanzas",
@@ -187,24 +201,8 @@ export default {
           beneficios: "Seguro social",
           empresa: "Empresa 2",
           propietario: "Lic. Noemi Catalán Nava",
-        },
-        {
-          id: 3,
-          nombreEmpleo: "Empleo 3",
-          descripcion:
-            "Lorem ipsum es el texto que se usa habitualmente en diseño gráfico en demostraciones de tipografías o de borradores de diseño para probar el diseño visual antes de insertar el texto final.",
-          catalogo: "Negocios",
-          estadoRepublica: "CDMX",
-          municipio: "Insurgentes",
-          remoto: false,
-          noContrataciones: 5,
-          tipoEmpleo: "Planta",
-          fechaInicio: "13/Octubre/2021",
-          salario: "$ 5,000",
-          periodoPago: "Mensual",
-          beneficios: "Seguro social",
-          empresa: "Empresa 3",
-          propietario: "Dr. José Narvaez Figueroa",
+          img:
+            "https://i0.wp.com/magis.iteso.mx/wp-content/uploads/2014/10/Magis-442-equidad-salario-mujeres-2.jpg?resize=620%2C354",
         },
       ],
       buscar: "",
@@ -243,5 +241,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

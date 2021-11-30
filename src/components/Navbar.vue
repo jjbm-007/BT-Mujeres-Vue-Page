@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <img src="@/assets/logo.png" width="40" alt="UTEZ" />
-      <router-link to="/" class="navbar-brand" href="#">BT-Mujeres</router-link>
+      <img src="@/assets/BT-Mujeres-Logo.jpg" width="40" alt="UTEZ" />
+      <router-link to="/" class="navbar-brand" href="#" style="margin-left: 20px;">BT - Mujeres</router-link>
       <button
         class="navbar-toggler"
         type="button"

@@ -1,6 +1,6 @@
 <template>
   <div class="personalDetails mt-5">
-    <h3 class="text-center">
+    <h3>
       <i class="fas fa-id-card mr"></i>Mis Datos Personales
     </h3>
 
