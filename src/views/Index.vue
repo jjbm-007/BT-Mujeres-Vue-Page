@@ -291,8 +291,7 @@ export default {
           beneficios: "Seguro social",
           empresa: "Empresa 2",
           propietario: "Lic. Noemi Catalán Nava",
-          img:
-            "https://i0.wp.com/magis.iteso.mx/wp-content/uploads/2014/10/Magis-442-equidad-salario-mujeres-2.jpg?resize=620%2C354",
+          img:"https://dam.cosmoenespanol.com/wp-content/uploads/2019/02/Trabajo-Muejeres.jpg"
         },
         {
           id: 3,
@@ -352,7 +351,7 @@ export default {
           empresa: "Empresa 3",
           propietario: "Dr. José Narvaez Figueroa",
           img:
-            "https://lh3.googleusercontent.com/proxy/l50ExlUWwELSpD8H3h6VhwYREZwXtTObOoXNwxUktvTm6L5TMP4dZvbVBNealiTTzF6UZIBB1kU5ddhYKzXST_xxrz7v7eK7cxPE4gqUSX1dpP9I5sDIWDGoVqzA18KQaGw8EA",
+            "https://imagenes.elpais.com/resizer/Si-EGEtLetoa5R0GxfSbcCm6JQQ=/414x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/NFSDGBDVCVZMVIFVWGUYWQ46XQ.jpg",
         },
       ],
       buscar: "",

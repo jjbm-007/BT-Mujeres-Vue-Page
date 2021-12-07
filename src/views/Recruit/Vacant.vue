@@ -202,7 +202,7 @@ export default {
           empresa: "Empresa 2",
           propietario: "Lic. Noemi Catalán Nava",
           img:
-            "https://i0.wp.com/magis.iteso.mx/wp-content/uploads/2014/10/Magis-442-equidad-salario-mujeres-2.jpg?resize=620%2C354",
+            "https://imagenes.elpais.com/resizer/Si-EGEtLetoa5R0GxfSbcCm6JQQ=/414x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/NFSDGBDVCVZMVIFVWGUYWQ46XQ.jpg",
         },
       ],
       buscar: "",
